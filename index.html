@@ -115,6 +115,27 @@ if ('serviceWorker' in navigator) {
 }
 
 const HEADERS = ['담당자','부분','시간','과목','문제집','단원','개수','비고'];
+// 고정 선택 목록
+const OPTIONS = {
+  part: ["과제 점검", "오답", "질문", "문제", "진도", "TEST"],
+  subject: ["공통수학1", "공통수학2", "대수", "미적분1", "확통"]
+};
+
+// select 생성 헬퍼
+function createSelect(list = [], value = "") {
+  const sel = document.createElement('select');
+  const empty = document.createElement('option');
+  empty.value = ""; empty.textContent = "선택";
+  sel.appendChild(empty);
+  list.forEach(txt => {
+    const opt = document.createElement('option');
+    opt.value = txt; opt.textContent = txt;
+    if (txt === value) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  return sel;
+}
+
 const $ = (s)=>document.querySelector(s);
 const $$ = (s)=>document.querySelectorAll(s);
 const tbody = $('#tbl tbody');
@@ -127,19 +148,40 @@ function rowObjFromTr(tr){
   const o = {}; HEADERS.forEach((h,i)=>{ o[h]=tr.children[i].firstChild.value || '' });
   return o;
 }
-function addRow(v={}){
-  const tr=document.createElement('tr');
-  HEADERS.forEach(h=>{
-    const td=document.createElement('td');
-    const inp=document.createElement('input');
-    inp.value = v[h] || '';
-    td.appendChild(inp); tr.appendChild(td);
+function addRow(v = {}) {
+  const tr = document.createElement('tr');
+
+  HEADERS.forEach(h => {
+    const td = document.createElement('td');
+    let el;
+
+    if (h === '부분') {
+      // 고정 옵션: 과제 점검 / 오답 / 질문 / 문제 / 진도 / TEST
+      el = createSelect(OPTIONS.part, v[h] || '');
+    } else if (h === '과목') {
+      // 고정 옵션: 공통수학1 / 공통수학2 / 대수 / 미적분1 / 확통
+      el = createSelect(OPTIONS.subject, v[h] || '');
+    } else {
+      // 나머지는 일반 입력칸
+      el = document.createElement('input');
+      el.value = v[h] || '';
+    }
+
+    td.appendChild(el);
+    tr.appendChild(td);
   });
-  const td=document.createElement('td');
-  const btn=document.createElement('button'); btn.textContent='삭제';
-  btn.onclick=()=>tr.remove(); td.appendChild(btn); tr.appendChild(td);
+
+  // 삭제 버튼
+  const td = document.createElement('td');
+  const btn = document.createElement('button');
+  btn.textContent = '삭제';
+  btn.onclick = () => tr.remove();
+  td.appendChild(btn);
+  tr.appendChild(td);
+
   tbody.appendChild(tr);
 }
+
 function clearRows(){ tbody.innerHTML=''; addRow(); }
 function collectRows(){ return Array.from($$('#tbl tbody tr')).map(rowObjFromTr); }
 function collectFooter(){ return { '다음시간체크': $('#nextTask').value || '' }; }
@@ -184,7 +226,7 @@ $('#btnPing').onclick = async () => {
 $('#btnLoadStudents').onclick = async () => {
   const url=$('#url').value.trim(); if(!url) return show('먼저 /exec URL을 입력하세요.');
   try{
-    const r=await fetch(url+'?mode=listStudents');
+    const r = await fetch(url + '?mode=listStudents&ts=' + Date.now(), { cache: 'no-store' });
     const j=await r.json();
     const arr=(j.students||[]);
     if(!arr.length) return show('학생목록이 비어있습니다. 시트에서 name/active=Y 로 입력하세요.');
