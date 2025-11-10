@@ -275,5 +275,42 @@ async function postToWebApp(which){
 }
 $('#btnSaveLog').onclick = ()=> postToWebApp('log');
 $('#btnGenerate').onclick = ()=> postToWebApp('generate');
+
+//------------------------------------------------------
+// 자동 날짜 입력 + 자동 요일 생성
+//------------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1) 페이지 로드 시 오늘 날짜 자동 입력
+  const dateField = document.querySelector('#date');
+  if (dateField) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateField.value = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // 2) 날짜 변경 시 자동 요일 입력
+  dateField.addEventListener("change", updateWeekday);
+
+  // 초기 로드시에도 요일 자동 설정
+  updateWeekday();
+});
+
+// 요일 자동 입력 함수
+function updateWeekday() {
+  const weekdayField = document.querySelector('#weekday');
+  const dateValue = document.querySelector('#date').value;
+
+  if (!dateValue) return;
+
+  const dateObj = new Date(dateValue);
+  const weekNames = ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
+  const day = weekNames[dateObj.getDay()];
+
+  weekdayField.value = day;
+}
+
 </script>
 </html>
