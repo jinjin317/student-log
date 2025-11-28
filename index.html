@@ -48,9 +48,26 @@
       <label>요일
         <input id="weekday" placeholder="예: 목요일" />
       </label>
-      <label>시작시간
-        <input id="startTime" placeholder="예: 17:00" />
-      </label>
+      <label>시작시간</label>
+<select id="startTime">
+  <!-- 5분 단위 자동 생성 -->
+  <script>
+    (function() {
+      const sel = document.getElementById('startTime');
+      const start = 10 * 60;    // 오전 10:00 → 600분
+      const end   = 22 * 60;    // 오후 10:00 → 1320분
+      for (let t = start; t <= end; t += 5) {
+        const h = String(Math.floor(t / 60)).padStart(2, '0');
+        const m = String(t % 60).padStart(2, '0');
+        const opt = document.createElement('option');
+        opt.value = `${h}:${m}`;
+        opt.textContent = `${h}:${m}`;
+        sel.appendChild(opt);
+      }
+    })();
+  </script>
+</select>
+
     </div>
     <div class="btns">
       <button class="btn o" id="btnPing">핑</button>
