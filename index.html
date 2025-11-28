@@ -6,47 +6,50 @@
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#2563eb" />
 <style>
-  :root{--bd:#e5e7eb;--bg:#f8fafc;--ink:#0f172a;--mut:#64748b;--brand:#2563eb;--ok:#059669;}
-  body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Apple Color Emoji;
-       background:var(--bg);color:var(--ink);margin:0}
-  .wrap{max-width:1100px;margin:24px auto;background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 20px rgba(15,23,42,.06)}
-  h1{margin:0 0 16px}
-  h2{margin:24px 0 10px}
-  .row{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  input,select,button,textarea{border:1px solid var(--bd);border-radius:10px;padding:9px 10px;font-size:14px}
-  textarea{min-height:72px}
-  .btn{cursor:pointer}
-  .btn.b{background:var(--brand);color:#fff;border:0}
-  .btn.g{background:var(--ok);color:#fff;border:0}
-  .btn.o{background:#fff}
-  .btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-  .card{border:1px solid var(--bd);border-radius:14px;padding:12px;margin:12px 0}
-  table{width:100%;border-collapse:collapse}
-  th,td{border-bottom:1px solid var(--bd);padding:8px;text-align:left;vertical-align:top}
-  th{background:#f1f5f9}
-  .small{color:var(--mut);font-size:12px}
-  .right{display:flex;gap:8px;justify-content:flex-end}
-  .msg{margin:8px 0;padding:10px;border:1px solid var(--bd);border-radius:12px;background:#f8fafc;white-space:pre-wrap}
-  .ok{color:var(--ok)}
-  .err{color:#dc2626}
+:root{--bd:#e5e7eb;--bg:#f8fafc;--ink:#0f172a;--mut:#64748b;--brand:#2563eb;--ok:#059669;}
+body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Apple Color Emoji;
+background:var(--bg);color:var(--ink);margin:0}
+.wrap{max-width:1100px;margin:24px auto;background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 20px rgba(15,23,42,.06)}
+h1{margin:0 0 16px}
+h2{margin:24px 0 10px}
+.row{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+input,select,button,textarea{border:1px solid var(--bd);border-radius:10px;padding:9px 10px;font-size:14px}
+textarea{min-height:72px}
+.btn{cursor:pointer}
+.btn.b{background:var(--brand);color:#fff;border:0}
+.btn.g{background:var(--ok);color:#fff;border:0}
+.btn.o{background:#fff}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.card{border:1px solid var(--bd);border-radius:14px;padding:12px;margin:12px 0}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1px solid var(--bd);padding:8px;text-align:left;vertical-align:top}
+th{background:#f1f5f9}
+.small{color:var(--mut);font-size:12px}
+.right{display:flex;gap:8px;justify-content:flex-end}
+.msg{margin:8px 0;padding:10px;border:1px solid var(--bd);border-radius:12px;background:#f8fafc;white-space:pre-wrap}
+.ok{color:var(--ok)}
+.err{color:#dc2626}
 </style>
 
 <div class="wrap">
-  <h1>학생 개인일지 (PWA)</h1>
+<h1>학생 개인일지 (PWA)</h1>
 
-  <div class="card">
-    <div class="row">
-      <label>웹앱 URL (/exec)
-        <input id="url" placeholder="https://script.google.com/macros/s/.../exec" />
-      </label>
-      <label>학생
-        <select id="student"><option value="">먼저 ‘학생 불러오기’</option></select>
-      </label>
-      <label>날짜
-        <input id="date" type="date" />
-      </label>
-      <label>요일
-        <input id="weekday" placeholder="예: 목요일" />
+<div class="card">
+<div class="row">
+<label>웹앱 URL (/exec)
+<input id="url" placeholder="https://script.google.com/macros/s/.../exec" />
+</label>
+<label>학생
+<select id="student"><option value="">먼저 ‘학생 불러오기’</option></select>
+</label>
+<label>날짜
+<input id="date" type="date" />
+</label>
+<label>요일
+<input id="weekday" placeholder="예: 목요일" />
+</label>
+      <label>시작시간
+        <input id="startTime" placeholder="예: 17:00" />
       </label>
       <label>시작시간</label>
 <select id="startTime">
@@ -68,114 +71,89 @@
   </script>
 </select>
 
-    </div>
-    <div class="btns">
-      <button class="btn o" id="btnPing">핑</button>
-      <button class="btn o" id="btnLoadStudents">학생 불러오기</button>
-      <button class="btn o" id="btnSaveLocal">임시 저장(브라우저)</button>
-      <button class="btn o" id="btnLoadLocal">임시 불러오기</button>
-      <span class="small">※ 학생 목록은 시트 ‘학생목록’ 탭의 <b>name/active(note)</b>, active=Y 만 가져옵니다.</span>
-    </div>
-    <div id="sys" class="msg"></div>
-  </div>
+</div>
+<div class="btns">
+<button class="btn o" id="btnPing">핑</button>
+<button class="btn o" id="btnLoadStudents">학생 불러오기</button>
+<button class="btn o" id="btnSaveLocal">임시 저장(브라우저)</button>
+<button class="btn o" id="btnLoadLocal">임시 불러오기</button>
+<span class="small">※ 학생 목록은 시트 ‘학생목록’ 탭의 <b>name/active(note)</b>, active=Y 만 가져옵니다.</span>
+</div>
+<div id="sys" class="msg"></div>
+</div>
 
-  <h2>① 수업 중 기록 (LOG 저장 폼)</h2>
-  <div class="card">
-    <div class="right">
-      <button class="btn o" id="btnAddRow">행 추가</button>
-      <button class="btn o" id="btnClearRows">행 모두 지우기</button>
-    </div>
-    <div style="overflow:auto">
-      <table id="tbl">
-        <thead>
-          <tr>
-            <th>담당자</th>
-            <th>부분</th>
-            <th>시간</th>
-            <th>과목</th>
-            <th>문제집</th>
-            <th>단원</th>
-            <th>개수</th>
-            <th>비고</th>
-            <th>관리</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <div class="btns">
-      <button class="btn b" id="btnSaveLog">구글시트에 LOG 저장</button>
-    </div>
-    <div class="small">저장하면 시트의 <b>학생이름_LOG</b> 탭으로 들어갑니다.</div>
-    <div id="logMsg" class="msg"></div>
-  </div>
+<h2>① 수업 중 기록 (LOG 저장 폼)</h2>
+<div class="card">
+<div class="right">
+<button class="btn o" id="btnAddRow">행 추가</button>
+<button class="btn o" id="btnClearRows">행 모두 지우기</button>
+</div>
+<div style="overflow:auto">
+<table id="tbl">
+<thead>
+<tr>
+<th>담당자</th>
+<th>부분</th>
+<th>시간</th>
+<th>과목</th>
+<th>문제집</th>
+<th>단원</th>
+<th>개수</th>
+<th>비고</th>
+<th>관리</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<div class="btns">
+<button class="btn b" id="btnSaveLog">구글시트에 LOG 저장</button>
+</div>
+<div class="small">저장하면 시트의 <b>학생이름_LOG</b> 탭으로 들어갑니다.</div>
+<div id="logMsg" class="msg"></div>
+</div>
 
-  <h2>② 수업 후: 일지 생성</h2>
-  <div class="card">
-    <label>다음 시간 과제
-      <textarea id="nextTask" placeholder="다음 수업까지 할 과제를 적어주세요."></textarea>
-    </label>
-    <div class="btns">
-      <button class="btn g" id="btnGenerate">📘 최종 일지 생성</button>
-    </div>
-    <div class="small">일지는 <b>학생이름_일지</b> 탭으로 새로 만들어집니다. (LOG 내용 그대로 표로, 하단엔 ‘다음 시간 과제’만 포함)</div>
-    <div id="genMsg" class="msg"></div>
-  </div>
+<h2>② 수업 후: 일지 생성</h2>
+<div class="card">
+<label>다음 시간 과제
+<textarea id="nextTask" placeholder="다음 수업까지 할 과제를 적어주세요."></textarea>
+</label>
+<div class="btns">
+<button class="btn g" id="btnGenerate">📘 최종 일지 생성</button>
+</div>
+<div class="small">일지는 <b>학생이름_일지</b> 탭으로 새로 만들어집니다. (LOG 내용 그대로 표로, 하단엔 ‘다음 시간 과제’만 포함)</div>
+<div id="genMsg" class="msg"></div>
+</div>
 </div>
 
 <script>
 // PWA SW 등록
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  });
+window.addEventListener('load', () => {
+navigator.serviceWorker.register('./sw.js').catch(()=>{});
+});
 }
 
 const HEADERS = ['담당자','부분','시간','과목','문제집','단원','개수','비고'];
-
-<!-- 시간 선택(10:00 ~ 22:00, 5분 단위) 공통 사용 -->
-<script>
-// 설정값
-const TIME_START_MIN = 10 * 60;  // 10:00
-const TIME_END_MIN   = 22 * 60;  // 22:00
-const TIME_STEP_MIN  = 5;        // 5분
-
-// 5분 단위 time select 생성
-function createTimeSelect() {
-  const sel = document.createElement('select');
-  for (let t = TIME_START_MIN; t <= TIME_END_MIN; t += TIME_STEP_MIN) {
-    const h = String(Math.floor(t / 60)).padStart(2, '0');
-    const m = String(t % 60).padStart(2, '0');
-    const s = `${h}:${m}`;
-    const opt = document.createElement('option');
-    opt.value = s;
-    opt.textContent = s;
-    sel.appendChild(opt);
-  }
-  return sel;
-}
-</script>
-
-
 // 고정 선택 목록
 const OPTIONS = {
-  part: ["과제 점검", "오답", "질문", "문제", "진도", "TEST"],
-  subject: ["공통수학1", "공통수학2", "대수", "미적분1", "확통"]
+part: ["과제 점검", "오답", "질문", "문제", "진도", "TEST"],
+subject: ["공통수학1", "공통수학2", "대수", "미적분1", "확통"]
 };
 
 // select 생성 헬퍼
 function createSelect(list = [], value = "") {
-  const sel = document.createElement('select');
-  const empty = document.createElement('option');
-  empty.value = ""; empty.textContent = "선택";
-  sel.appendChild(empty);
-  list.forEach(txt => {
-    const opt = document.createElement('option');
-    opt.value = txt; opt.textContent = txt;
-    if (txt === value) opt.selected = true;
-    sel.appendChild(opt);
-  });
-  return sel;
+const sel = document.createElement('select');
+const empty = document.createElement('option');
+empty.value = ""; empty.textContent = "선택";
+sel.appendChild(empty);
+list.forEach(txt => {
+const opt = document.createElement('option');
+opt.value = txt; opt.textContent = txt;
+if (txt === value) opt.selected = true;
+sel.appendChild(opt);
+});
+return sel;
 }
 
 const $ = (s)=>document.querySelector(s);
@@ -183,45 +161,45 @@ const $$ = (s)=>document.querySelectorAll(s);
 const tbody = $('#tbl tbody');
 
 function show(msg, where='#sys'){
-  const m=document.querySelector(where);
-  m.textContent = msg;
+const m=document.querySelector(where);
+m.textContent = msg;
 }
 function rowObjFromTr(tr){
-  const o = {}; HEADERS.forEach((h,i)=>{ o[h]=tr.children[i].firstChild.value || '' });
-  return o;
+const o = {}; HEADERS.forEach((h,i)=>{ o[h]=tr.children[i].firstChild.value || '' });
+return o;
 }
 function addRow(v = {}) {
-  const tr = document.createElement('tr');
+const tr = document.createElement('tr');
 
-  HEADERS.forEach(h => {
-    const td = document.createElement('td');
-    let el;
+HEADERS.forEach(h => {
+const td = document.createElement('td');
+let el;
 
-    if (h === '부분') {
-      // 고정 옵션: 과제 점검 / 오답 / 질문 / 문제 / 진도 / TEST
-      el = createSelect(OPTIONS.part, v[h] || '');
-    } else if (h === '과목') {
-      // 고정 옵션: 공통수학1 / 공통수학2 / 대수 / 미적분1 / 확통
-      el = createSelect(OPTIONS.subject, v[h] || '');
-    } else {
-      // 나머지는 일반 입력칸
-      el = document.createElement('input');
-      el.value = v[h] || '';
-    }
+if (h === '부분') {
+// 고정 옵션: 과제 점검 / 오답 / 질문 / 문제 / 진도 / TEST
+el = createSelect(OPTIONS.part, v[h] || '');
+} else if (h === '과목') {
+// 고정 옵션: 공통수학1 / 공통수학2 / 대수 / 미적분1 / 확통
+el = createSelect(OPTIONS.subject, v[h] || '');
+} else {
+// 나머지는 일반 입력칸
+el = document.createElement('input');
+el.value = v[h] || '';
+}
 
-    td.appendChild(el);
-    tr.appendChild(td);
-  });
+td.appendChild(el);
+tr.appendChild(td);
+});
 
-  // 삭제 버튼
-  const td = document.createElement('td');
-  const btn = document.createElement('button');
-  btn.textContent = '삭제';
-  btn.onclick = () => tr.remove();
-  td.appendChild(btn);
-  tr.appendChild(td);
+// 삭제 버튼
+const td = document.createElement('td');
+const btn = document.createElement('button');
+btn.textContent = '삭제';
+btn.onclick = () => tr.remove();
+td.appendChild(btn);
+tr.appendChild(td);
 
-  tbody.appendChild(tr);
+tbody.appendChild(tr);
 }
 
 function clearRows(){ tbody.innerHTML=''; addRow(); }
@@ -229,26 +207,26 @@ function collectRows(){ return Array.from($$('#tbl tbody tr')).map(rowObjFromTr)
 function collectFooter(){ return { '다음시간체크': $('#nextTask').value || '' }; }
 
 function saveLocal(){
-  const data={
-    url:$('#url').value, student:$('#student').value,
-    date:$('#date').value, weekday:$('#weekday').value, startTime:$('#startTime').value,
-    rows:collectRows(), footer:collectFooter()
-  };
-  localStorage.setItem('daily-log', JSON.stringify(data));
-  show('이 브라우저에 임시 저장되었습니다.');
+const data={
+url:$('#url').value, student:$('#student').value,
+date:$('#date').value, weekday:$('#weekday').value, startTime:$('#startTime').value,
+rows:collectRows(), footer:collectFooter()
+};
+localStorage.setItem('daily-log', JSON.stringify(data));
+show('이 브라우저에 임시 저장되었습니다.');
 }
 function loadLocal(){
-  try{
-    const d=JSON.parse(localStorage.getItem('daily-log')||'{}');
-    if(d.url) $('#url').value=d.url;
-    if(d.student) $('#student').innerHTML='<option>'+d.student+'</option>';
-    if(d.date) $('#date').value=d.date;
-    if(d.weekday) $('#weekday').value=d.weekday;
-    if(d.startTime) $('#startTime').value=d.startTime;
-    clearRows(); (d.rows||[{}]).forEach(addRow);
-    $('#nextTask').value = (d.footer && d.footer['다음시간체크']) || '';
-    show('임시 저장 불러오기 완료.');
-  }catch(_){ clearRows(); }
+try{
+const d=JSON.parse(localStorage.getItem('daily-log')||'{}');
+if(d.url) $('#url').value=d.url;
+if(d.student) $('#student').innerHTML='<option>'+d.student+'</option>';
+if(d.date) $('#date').value=d.date;
+if(d.weekday) $('#weekday').value=d.weekday;
+if(d.startTime) $('#startTime').value=d.startTime;
+clearRows(); (d.rows||[{}]).forEach(addRow);
+$('#nextTask').value = (d.footer && d.footer['다음시간체크']) || '';
+show('임시 저장 불러오기 완료.');
+}catch(_){ clearRows(); }
 }
 if(!$('#tbl tbody').children.length) addRow();
 
@@ -258,62 +236,62 @@ $('#btnSaveLocal').onclick = saveLocal;
 $('#btnLoadLocal').onclick = loadLocal;
 
 $('#btnPing').onclick = async () => {
-  const url=$('#url').value.trim(); if(!url) return show('먼저 /exec URL을 입력하세요.');
-  try{
-    const r=await fetch(url+'?mode=ping');
-    const j=await r.json();
-    show('핑: '+JSON.stringify(j));
-  }catch(e){ show('핑 실패: '+e); }
+const url=$('#url').value.trim(); if(!url) return show('먼저 /exec URL을 입력하세요.');
+try{
+const r=await fetch(url+'?mode=ping');
+const j=await r.json();
+show('핑: '+JSON.stringify(j));
+}catch(e){ show('핑 실패: '+e); }
 };
 $('#btnLoadStudents').onclick = async () => {
-  const url=$('#url').value.trim(); if(!url) return show('먼저 /exec URL을 입력하세요.');
-  try{
-    const r = await fetch(url + '?mode=listStudents&ts=' + Date.now(), { cache: 'no-store' });
-    const j=await r.json();
-    const arr=(j.students||[]);
-    if(!arr.length) return show('학생목록이 비어있습니다. 시트에서 name/active=Y 로 입력하세요.');
-    $('#student').innerHTML = '<option value="">학생 선택</option>' + arr.map(s=>`<option>${s.name}</option>`).join('');
-    show(`학생 ${arr.length}명 불러왔습니다.`);
-  }catch(e){ show('학생 목록 요청 실패: '+e); }
+const url=$('#url').value.trim(); if(!url) return show('먼저 /exec URL을 입력하세요.');
+try{
+const r = await fetch(url + '?mode=listStudents&ts=' + Date.now(), { cache: 'no-store' });
+const j=await r.json();
+const arr=(j.students||[]);
+if(!arr.length) return show('학생목록이 비어있습니다. 시트에서 name/active=Y 로 입력하세요.');
+$('#student').innerHTML = '<option value="">학생 선택</option>' + arr.map(s=>`<option>${s.name}</option>`).join('');
+show(`학생 ${arr.length}명 불러왔습니다.`);
+}catch(e){ show('학생 목록 요청 실패: '+e); }
 };
 
 function payload(mode){
-  return {
-    mode, student:$('#student').value,
-    date:$('#date').value, weekday:$('#weekday').value, startTime:$('#startTime').value,
-    rows:collectRows(), footer:collectFooter(), savedAt:new Date().toISOString()
-  };
+return {
+mode, student:$('#student').value,
+date:$('#date').value, weekday:$('#weekday').value, startTime:$('#startTime').value,
+rows:collectRows(), footer:collectFooter(), savedAt:new Date().toISOString()
+};
 }
 async function postToWebApp(which){
-  const url=$('#url').value.trim(); if(!url) return show('웹앱 URL을 먼저 입력하세요.', '#logMsg');
-  if(!$('#student').value) return show('학생을 선택하세요.', '#logMsg');
-  if(!$('#date').value) return show('날짜를 입력하세요.', '#logMsg');
+const url=$('#url').value.trim(); if(!url) return show('웹앱 URL을 먼저 입력하세요.', '#logMsg');
+if(!$('#student').value) return show('학생을 선택하세요.', '#logMsg');
+if(!$('#date').value) return show('날짜를 입력하세요.', '#logMsg');
 
-  const data = payload(which);
-  const form = new URLSearchParams();
-  Object.entries({
-    mode: data.mode,
-    student: data.student,
-    date: data.date,
-    weekday: data.weekday,
-    startTime: data.startTime,
-    rows: JSON.stringify(data.rows),
-    footer: JSON.stringify(data.footer),
-    savedAt: data.savedAt
-  }).forEach(([k,v])=> form.append(k, v ?? ''));
+const data = payload(which);
+const form = new URLSearchParams();
+Object.entries({
+mode: data.mode,
+student: data.student,
+date: data.date,
+weekday: data.weekday,
+startTime: data.startTime,
+rows: JSON.stringify(data.rows),
+footer: JSON.stringify(data.footer),
+savedAt: data.savedAt
+}).forEach(([k,v])=> form.append(k, v ?? ''));
 
-  try{
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: form.toString()
-    });
-    const j = await res.json().catch(()=> ({}));
-    const msg = (which==='log'?'LOG':'일지')+' 저장 요청 완료! '+(j.ok?'ok':'');
-    if(which==='log') show(msg, '#logMsg'); else show(msg, '#genMsg');
-  }catch(e){
-    if(which==='log') show('전송 실패: '+e, '#logMsg'); else show('전송 실패: '+e, '#genMsg');
-  }
+try{
+const res = await fetch(url, {
+method: 'POST',
+headers: { 'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8' },
+body: form.toString()
+});
+const j = await res.json().catch(()=> ({}));
+const msg = (which==='log'?'LOG':'일지')+' 저장 요청 완료! '+(j.ok?'ok':'');
+if(which==='log') show(msg, '#logMsg'); else show(msg, '#genMsg');
+}catch(e){
+if(which==='log') show('전송 실패: '+e, '#logMsg'); else show('전송 실패: '+e, '#genMsg');
+}
 }
 $('#btnSaveLog').onclick = ()=> postToWebApp('log');
 $('#btnGenerate').onclick = ()=> postToWebApp('generate');
@@ -323,35 +301,35 @@ $('#btnGenerate').onclick = ()=> postToWebApp('generate');
 //------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) 페이지 로드 시 오늘 날짜 자동 입력
-  const dateField = document.querySelector('#date');
-  if (dateField) {
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    dateField.value = `${yyyy}-${mm}-${dd}`;
-  }
+// 1) 페이지 로드 시 오늘 날짜 자동 입력
+const dateField = document.querySelector('#date');
+if (dateField) {
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const dd = String(today.getDate()).padStart(2, '0');
+dateField.value = `${yyyy}-${mm}-${dd}`;
+}
 
-  // 2) 날짜 변경 시 자동 요일 입력
-  dateField.addEventListener("change", updateWeekday);
+// 2) 날짜 변경 시 자동 요일 입력
+dateField.addEventListener("change", updateWeekday);
 
-  // 초기 로드시에도 요일 자동 설정
-  updateWeekday();
+// 초기 로드시에도 요일 자동 설정
+updateWeekday();
 });
 
 // 요일 자동 입력 함수
 function updateWeekday() {
-  const weekdayField = document.querySelector('#weekday');
-  const dateValue = document.querySelector('#date').value;
+const weekdayField = document.querySelector('#weekday');
+const dateValue = document.querySelector('#date').value;
 
-  if (!dateValue) return;
+if (!dateValue) return;
 
-  const dateObj = new Date(dateValue);
-  const weekNames = ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
-  const day = weekNames[dateObj.getDay()];
+const dateObj = new Date(dateValue);
+const weekNames = ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'];
+const day = weekNames[dateObj.getDay()];
 
-  weekdayField.value = day;
+weekdayField.value = day;
 }
 
 </script>
