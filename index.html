@@ -51,7 +51,6 @@ th{background:#f1f5f9}
       <label>시작시간
         <input id="startTime" placeholder="예: 17:00" />
       </label>
-      <label>시작시간</label>
 
 </div>
 <div class="btns">
@@ -163,10 +162,6 @@ let el;
     } else if (h === '과목') {
       // 고정 옵션: 공통수학1 / 공통수학2 / 대수 / 미적분1 / 확통
       el = createSelect(OPTIONS.subject, v[h] || '');
-    } else if (h === '시간') {
-      // ★ 여기가 새로 추가되는 부분: 시간 선택 드롭다운
-      // 기본값은 17:00-17:30 (createTimeRange 기본값 사용)
-      el = createTimeRange();
     } else {
       // 나머지는 일반 입력칸
       el = document.createElement('input');
@@ -176,38 +171,6 @@ let el;
 td.appendChild(el);
 tr.appendChild(td);
 });
-
-
-// 시간 범위(시작~종료 5분 단위) 생성 함수
-function createTimeRange(start = "17:00", end = "17:30") {
-  const sel = document.createElement('select');
-
-  const START_MIN = 10 * 60;   // 10:00
-  const END_MIN   = 22 * 60;   // 22:00
-  const STEP = 5;              // 5분 단위
-
-  for (let t = START_MIN; t <= END_MIN; t += STEP) {
-    for (let d = STEP; d <= 60; d += STEP) {
-      const h1 = String(Math.floor(t / 60)).padStart(2, '0');
-      const m1 = String(t % 60).padStart(2, '0');
-
-      const t2 = t + STEP;  
-      const h2 = String(Math.floor(t2 / 60)).padStart(2, '0');
-      const m2 = String(t2 % 60).padStart(2, '0');
-
-      const label = `${h1}:${m1}-${h2}:${m2}`;
-      const opt = document.createElement('option');
-      opt.value = label;
-      opt.textContent = label;
-
-      if (label === `${start}-${end}`) opt.selected = true;
-
-      sel.appendChild(opt);
-      break;
-    }
-  }
-  return sel;
-}
 
 
 // 삭제 버튼
