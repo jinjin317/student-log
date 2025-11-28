@@ -132,6 +132,31 @@ if ('serviceWorker' in navigator) {
 }
 
 const HEADERS = ['담당자','부분','시간','과목','문제집','단원','개수','비고'];
+
+<!-- 시간 선택(10:00 ~ 22:00, 5분 단위) 공통 사용 -->
+<script>
+// 설정값
+const TIME_START_MIN = 10 * 60;  // 10:00
+const TIME_END_MIN   = 22 * 60;  // 22:00
+const TIME_STEP_MIN  = 5;        // 5분
+
+// 5분 단위 time select 생성
+function createTimeSelect() {
+  const sel = document.createElement('select');
+  for (let t = TIME_START_MIN; t <= TIME_END_MIN; t += TIME_STEP_MIN) {
+    const h = String(Math.floor(t / 60)).padStart(2, '0');
+    const m = String(t % 60).padStart(2, '0');
+    const s = `${h}:${m}`;
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    sel.appendChild(opt);
+  }
+  return sel;
+}
+</script>
+
+
 // 고정 선택 목록
 const OPTIONS = {
   part: ["과제 점검", "오답", "질문", "문제", "진도", "TEST"],
